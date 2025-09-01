@@ -86,38 +86,3 @@ class Bank:
         from_account.withdraw(amount)
         to_account.deposit(amount)
         print(f"Transferred {amount} from {from_account_number} to {to_account_number}")
-
-# Test Program
-if __name__ == "__main__":
-    # Create Bank object
-    bank = Bank()
-
-    # Create accounts
-    savings = SavingsAccount("001", "Alice", 1000.0, 0.03)
-    current = CurrentAccount("002", "Bob", 500.0, 300.0)
-    fd = FixedDepositAccount("003", "Charlie", 2000.0, 2)
-
-    # Add accounts to the bank
-    bank.add_account(savings)
-    bank.add_account(current)
-    bank.add_account(fd)
-
-    # Perform some operations
-    savings.deposit(500)
-    current.withdraw(100)
-    savings.apply_interest()
-
-    # Transfer funds between accounts
-    bank.transfer_funds("001", "002", 300)
-    print(savings)
-    print(current)
-
-    # Try FD withdrawal (should raise exception)
-    try:
-        fd.withdraw(100)
-    except ValueError as e:
-        print(f"Error: {e}")
-
-    # Show the final balance of FD (should have applied interest)
-    fd.apply_interest()
-    print(fd)
