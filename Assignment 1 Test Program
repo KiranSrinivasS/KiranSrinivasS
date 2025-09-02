@@ -1,0 +1,33 @@
+if __name__ == "__main__":
+    # Create Bank object
+    bank = Bank()
+
+    # Create accounts
+    savings = SavingsAccount("001", "Kiran Srinivas", 2000.0, 0.03)
+    current = CurrentAccount("002", "Bala", 900.0, 300.0)
+    fd = FixedDepositAccount("003", "Kavin", 3000.0, 2)
+
+    # Add accounts to the bank
+    bank.add_account(savings)
+    bank.add_account(current)
+    bank.add_account(fd)
+
+    # Perform some operations
+    savings.deposit(800)
+    current.withdraw(250)
+    savings.apply_interest()
+
+    # Transfer funds between accounts
+    bank.transfer_funds("001", "002", 900)
+    print(savings)
+    print(current)
+
+    # Try FD withdrawal (should raise exception)
+    try:
+        fd.withdraw(1000)
+    except ValueError as e:
+        print(f"Error: {e}")
+
+    # Show the final balance of FD (should have applied interest)
+    fd.apply_interest()
+    print(fd)
