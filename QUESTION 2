@@ -1,0 +1,8 @@
+def rotateLeft(d, arr):
+    n = len(arr)
+    d = d % n
+    return arr[d:] + arr[:d]
+d = 4
+arr = [5, 6, 7, 8, 9]
+result = rotateLeft(d, arr)
+print(result)
