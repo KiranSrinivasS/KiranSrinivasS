@@ -1,0 +1,34 @@
+class SinglyLinkedListNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+def reverse(head: SinglyLinkedListNode) -> SinglyLinkedListNode:
+    prev = None
+    current = head
+    while current:
+        next_node = current.next
+        current.next = prev
+        prev = current            
+        current = next_node      
+    
+    return prev
+def getHeight(root):
+    if root is None:
+        return 0 
+    else:
+        left_height = getHeight(root.left)
+        right_height = getHeight(root.right)
+        return 1 + max(left_height, right_height)
+def print_list(node):
+    while node:
+        print(node.data, end=" -> ")
+        node = node.next
+    print("NULL")
+head = SinglyLinkedListNode(1)
+head.next = SinglyLinkedListNode(2)
+head.next.next = SinglyLinkedListNode(3)
+print("Original list:")
+print_list(head)
+reversed_head = reverse(head)
+print("Reversed list:")
+print_list(reversed_head)
